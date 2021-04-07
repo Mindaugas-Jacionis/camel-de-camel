@@ -11,13 +11,12 @@ export default [
     output: [
       {
         name: "CamelDeCamel",
-        globals: { "redux-api-middleware": "CamelDeCamel" },
+        globals: { "camel-de-camel": "CamelDeCamel" },
         file: pkg.unpkg,
         format: "umd",
         sourcemap: true,
       },
       { file: pkg.main, sourcemap: true, format: "cjs" },
-      // { file: pkg.module, sourcemap: true, format: "esm" },
     ],
     plugins: [
       nodeResolve(),

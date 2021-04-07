@@ -1,0 +1,7 @@
+# Browsers that we support
+
+>0.25%
+last 2 versions
+not IE > 0
+not ExplorerMobile > 0
+maintained node versions
