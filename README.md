@@ -14,6 +14,18 @@ Or if you're using `yarn`
 yarn add -D @easy/camel-de-camel
 ```
 
+## Alternative Usage
+
+Altrnatively you can use `ES` module, which can be found under `/lib/esm` directory.  
+Or you can use `umd` package by adding bellow `script` tag to your `html`, and then using global `CamelDeCamel` object to access `.camelize` and `.decamelize` methods.
+
+```html
+<script
+  type="text/javascript"
+  src="https://unpkg.com/@easy/camel-de-camel@1.0.0/lib/index.js"
+></script>
+```
+
 ## Methods
 
 Library provides you with two methods:
@@ -66,4 +78,4 @@ decamelize({ camelCase: "value" }, "pascal"); // output:  { CamelCase: "value" }
 
 ## ⚠️ Warning ⚠️
 
-Incorrect casing, i.e. keys like `"dot.Kebab_snake"` at the moment will be horribly modified. This particular example would become: `dot._kebab_snake` when casing is `snake`, and `dot..kebab_snake` when casing is `dot`. These keys are considered semantically incorrect. There is a plan to ignore any keys that have anything but alpha-numeric in them when `decamelize`'ing. If you feel like contributing, please feel free to put in a PR and grab the [issue](https://github.com/Mindaugas-Jacionis/camel-de-camel/issues/3)
+Incorrect casing when using `decamelize`, i.e. keys like `"dot.Kebab_snake"` at the moment will be horribly modified. This particular example would become: `dot._kebab_snake` when casing is `snake`, and `dot..kebab_snake` when casing is `dot`, and so on. These keys are considered semantically incorrect. There is a plan to either ignore any keys that have multiple casings in them when `decamelize`'ing, or remove non alpha-numeric characters(except of selected casing). If you feel like contributing, please feel free to put in a PR and grab the [issue](https://github.com/Mindaugas-Jacionis/camel-de-camel/issues/3)
