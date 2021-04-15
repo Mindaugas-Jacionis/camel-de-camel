@@ -1,17 +1,17 @@
-# @easy/camel-de-camel
+# camel-de-camel
 
 Library intended to `camelize` or `decamelize` keys in objects.
 
 ## Installation
 
 ```shell
-npm i -D @easy/camel-de-camel
+npm i camel-de-camel
 ```
 
 Or if you're using `yarn`
 
 ```shell
-yarn add -D @easy/camel-de-camel
+yarn add camel-de-camel
 ```
 
 ## Alternative Usage
@@ -20,10 +20,7 @@ Altrnatively you can use `ES` module, which can be found under `/lib/esm` direct
 Or you can use `umd` package by adding bellow `script` tag to your `html`, and then using global `CamelDeCamel` object to access `.camelize` and `.decamelize` methods.
 
 ```html
-<script
-  type="text/javascript"
-  src="https://unpkg.com/@easy/camel-de-camel@1.0.0/lib/index.js"
-></script>
+<script type="text/javascript" src="https://unpkg.com/camel-de-camel@1.0.0/umd/index.js"></script>
 ```
 
 ## Methods

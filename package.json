@@ -1,5 +1,5 @@
 {
-  "name": "@easy/camel-de-camel",
+  "name": "camel-de-camel",
   "version": "0.1.0",
   "description": "Recursive camelize objects",
   "main": "lib/cjs/index.js",
