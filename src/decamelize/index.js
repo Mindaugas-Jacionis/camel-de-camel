@@ -1,6 +1,12 @@
 import { isObject } from "../utils";
 
-function toCase(key, casing) {
+const ALPHANUMERIC_REGEX = /^[a-zA-Z0-9]*$/;
+
+function toCase(key, { casing, excludeMixedCasing }) {
+  if (excludeMixedCasing && !ALPHANUMERIC_REGEX.test(key)) {
+    return key;
+  }
+
   const separator =
     {
       upper: "_",
@@ -28,23 +34,26 @@ function toCase(key, casing) {
   return casing === "upper" ? newKey.toUpperCase() : newKey;
 }
 
-function decamelizeArray(inputArray, casing) {
+function decamelizeArray(inputArray, options) {
   return inputArray.map((value) => {
     if (Array.isArray(value)) {
-      return decamelizeArray(value, casing);
+      return decamelizeArray(value, options);
     }
 
     if (isObject(value)) {
-      return decamelize(value, casing);
+      return decamelize(value, options);
     }
 
     return value;
   });
 }
 
-function decamelize(inputObject, casing = "snake") {
+function decamelize(inputObject, inputOptions) {
+  const defaultOptions = { casing: "snake", excludeMixedCasing: false };
+  const options = isObject(inputOptions) ? { ...defaultOptions, ...inputOptions } : defaultOptions;
+
   if (Array.isArray(inputObject)) {
-    return decamelizeArray(inputObject, casing);
+    return decamelizeArray(inputObject, options);
   }
 
   if (!isObject(inputObject)) {
@@ -54,14 +63,14 @@ function decamelize(inputObject, casing = "snake") {
   return Object.fromEntries(
     Object.entries(inputObject).map(([key, value]) => {
       if (isObject(value)) {
-        return [toCase(key, casing), decamelize(value, casing)];
+        return [toCase(key, options), decamelize(value, options)];
       }
 
       if (Array.isArray(value)) {
-        return [toCase(key, casing), decamelizeArray(value)];
+        return [toCase(key, options), decamelizeArray(value, options)];
       }
 
-      return [toCase(key, casing), value];
+      return [toCase(key, options), value];
     })
   );
 }
