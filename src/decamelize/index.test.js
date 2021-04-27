@@ -31,7 +31,7 @@ describe("decamelize", () => {
       },
     };
 
-    expect(decamelize(input, "snake")).toEqual({
+    expect(decamelize(input, { casing: "snake" })).toEqual({
       snake_case: "snake Value",
       another_case: "another value",
       snake_object: {
@@ -51,7 +51,7 @@ describe("decamelize", () => {
       },
     };
 
-    expect(decamelize(input, "upper")).toEqual({
+    expect(decamelize(input, { casing: "upper" })).toEqual({
       SNAKE_CASE: "snake Value",
       ANOTHER_CASE: "another value",
       SNAKE_OBJECT: {
@@ -71,7 +71,7 @@ describe("decamelize", () => {
       },
     };
 
-    expect(decamelize(input, "kebab")).toEqual({
+    expect(decamelize(input, { casing: "kebab" })).toEqual({
       "kebab-case": "snake Value",
       "another-kebab-case": "another value",
       "kebab-object": {
@@ -91,7 +91,7 @@ describe("decamelize", () => {
       },
     };
 
-    expect(decamelize(input, "dot")).toEqual({
+    expect(decamelize(input, { casing: "dot" })).toEqual({
       "dot.case": "snake Value",
       "another.dot.case": "another value",
       "dot.object": {
@@ -111,7 +111,7 @@ describe("decamelize", () => {
       },
     };
 
-    expect(decamelize(input, "pascal")).toEqual({
+    expect(decamelize(input, { casing: "pascal" })).toEqual({
       PascalCase: "pascal Value",
       AnotherPascalCase: "another value",
       PascalObject: {
@@ -126,19 +126,19 @@ describe("decamelize", () => {
       { first_case: "first first", second_case: "second value" },
     ]);
     expect(
-      decamelize([{ firstCase: "first first", secondCase: "second value" }], "snake")
+      decamelize([{ firstCase: "first first", secondCase: "second value" }], { casing: "snake" })
     ).toEqual([{ first_case: "first first", second_case: "second value" }]);
     expect(
-      decamelize([{ firstCase: "first first", secondCase: "second value" }], "upper")
+      decamelize([{ firstCase: "first first", secondCase: "second value" }], { casing: "upper" })
     ).toEqual([{ FIRST_CASE: "first first", SECOND_CASE: "second value" }]);
-    expect(decamelize([{ firstCase: "first first", secondCase: "second value" }], "dot")).toEqual([
-      { "first.case": "first first", "second.case": "second value" },
-    ]);
     expect(
-      decamelize([{ firstCase: "first first", secondCase: "second value" }], "kebab")
+      decamelize([{ firstCase: "first first", secondCase: "second value" }], { casing: "dot" })
+    ).toEqual([{ "first.case": "first first", "second.case": "second value" }]);
+    expect(
+      decamelize([{ firstCase: "first first", secondCase: "second value" }], { casing: "kebab" })
     ).toEqual([{ "first-case": "first first", "second-case": "second value" }]);
     expect(
-      decamelize([{ firstCase: "first first", secondCase: "second value" }], "pascal")
+      decamelize([{ firstCase: "first first", secondCase: "second value" }], { casing: "pascal" })
     ).toEqual([{ FirstCase: "first first", SecondCase: "second value" }]);
 
     expect(
@@ -175,6 +175,25 @@ describe("decamelize", () => {
           undefined,
         ],
       ],
+    });
+  });
+
+  it("should not exclude mixed casing when excludeMixedCasing is not provided or false", () => {
+    expect(decamelize({ "dot.Kebab_snake": "dot.Kebab_snake value" })).toEqual({
+      "dot._kebab_snake": "dot.Kebab_snake value",
+    });
+    expect(
+      decamelize({ "dot.Kebab_snake": "dot.Kebab_snake value" }, { excludeMixedCasing: false })
+    ).toEqual({
+      "dot._kebab_snake": "dot.Kebab_snake value",
+    });
+  });
+
+  it("should exclude mixed casing when excludeMixedCasing is true", () => {
+    expect(
+      decamelize({ "dot.Kebab_snake": "dot.Kebab_snake value" }, { excludeMixedCasing: true })
+    ).toEqual({
+      "dot.Kebab_snake": "dot.Kebab_snake value",
     });
   });
 });
