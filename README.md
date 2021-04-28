@@ -4,9 +4,9 @@ Library intended to `camelize` or `decamelize` keys in objects.
 
 ## Motivation
 
-A lot of times colaboration between frontend and backend differs in casing. It is common to use `camelCase` in JavaScript in frontend. While backend implementations commonly use `snake_case`. It is not uncommon for backend API response payloads to be remapped into `cammelCase` and vice-versa when sending frontend-to-backend requests.  
-This library aims to provide seemless API requests interceptor that would cover casing for both ends.  
-**camel-de-camle library can definetely be used outside of backend/frontend API communication context, but it is built with it in mind and therefore acconts only for JSON parsable data. I.e. things like regex are not accounted for.**
+A lot of times collaboration between frontend and backend differs in the casing. It is common to use `camelCase` in JavaScript in frontend. While backend payloads commonly use `snake_case`. It is not uncommon for backend API response payloads to be remapped into `cammelCase` and vice-versa when sending frontend-to-backend requests.  
+This library aims to provide a seamless API requests interceptor that would cover casing for both ends.  
+**camel-de-camle library can definitely be used outside of backend/frontend API communication context, but it is built with it in mind and therefore accounts only for JSON parsable data. I.e. things like regex are not accounted for.**
 
 ## Installation
 
@@ -22,7 +22,7 @@ yarn add camel-de-camel
 
 ## Alternative Usage
 
-Altrnatively you can use `ES` module, which can be found under `/lib/esm` directory.  
+Alternatively, you can use `ES` module, which can be found under `/lib/esm` directory.  
 Or you can use `umd` package by adding bellow `script` tag to your `html`, and then using global `CamelDeCamel` object to access `.camelize` and `.decamelize` methods.
 
 ```html
@@ -33,7 +33,7 @@ Or you can use `umd` package by adding bellow `script` tag to your `html`, and t
 
 Library provides you with two methods:
 
-- `camelize` - takes `Object` or `Array` of `Object`s as input and outputs same data structure where each key in `Object`s is converted to `cammelCase` (no matter how deeply nested)
+- `camelize` - takes `Object` or `Array` of `Object`s as input and outputs the same data structure where each key in `Object`s is converted to `cammelCase` (no matter how deeply nested)
 - `decamelize` - takes two arguments as input: 1. `Object` or `Array` of `Object`s 2. options `Object` that consist of: 1. `casing` - wanted case to convert to (one of these: `upper` | `snake`| `dot` | `kebab` | `pascal` - default is `snake`) 2. `excludeMixedCasing` - `Boolean` value that defaults to `false`, which allows to exclude non-alphanumeric keys from being converted to selected casing(as it would result in even more mixed casing). Function `decamelize` outputs same data structure where each key in `Object`s is converted to selected casing (mixed casing is either excluded or converted based on `excludeMixedCasing` option value).
 
 ## Examples
@@ -54,7 +54,7 @@ camelize({
   ]
 })
 
-// output of above camelize() call
+// output of the above camelize() call
 {
   snakeCase: 'value',
   pascalCase: {
@@ -85,7 +85,7 @@ decamelize({ "dot.Kebab_snake": "value" }, { casing: "snake" }); // output: { "d
 decamelize({ "dot.Kebab_snake": "value" }, { casing: "snake", excludeMixedCasing: true }); // output: { "dot.Kebab_snake": "value" }
 ```
 
-**example of axios request/response interceptors (axios has to be added to the project separetely)**
+**example of axios request/response interceptors (axios has to be added to the project separately)**
 
 ```js
 // will convert to snake case without mixed casing exclusion
