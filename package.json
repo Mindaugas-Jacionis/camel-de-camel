@@ -36,7 +36,8 @@
     "prebuild": "npm run clean",
     "build": "run-p build:*",
     "build:cjs/umd": "rollup -c",
-    "build:esm": "babel src --out-dir lib/esm --ignore 'src/**/*.test.js' --source-maps"
+    "build:esm": "babel src --out-dir lib/esm --ignore 'src/**/*.test.js' --source-maps",
+    "prepack": "yarn build"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.10",
