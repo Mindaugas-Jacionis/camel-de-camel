@@ -1,7 +1,11 @@
 {
   "name": "camel-de-camel",
   "version": "0.1.0",
-  "description": "Recursive camelize objects",
+  "description": "Recursive camelize or decamelize Objects and/or Arrays of Objects",
+  "files": [
+    "lib/*",
+    "!lib/**/*.js.map"
+  ],
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "unpkg": "lib/umd/index.js",
