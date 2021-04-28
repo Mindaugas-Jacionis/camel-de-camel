@@ -2,13 +2,33 @@
   "name": "camel-de-camel",
   "version": "0.1.0",
   "description": "Recursive camelize or decamelize Objects and/or Arrays of Objects",
+  "keywords": [
+    "camelize",
+    "decamelize",
+    "convert",
+    "transform",
+    "change-case",
+    "camelCase",
+    "PascalCase",
+    "snake_case",
+    "kebab-case",
+    "UPPER_CASE",
+    "dot.case"
+  ],
+  "homepage": "https://github.com/mindaugas-jacionis/camel-de-camel",
+  "bugs": {
+    "url": "https://github.com/mindaugas-jacionis/camel-de-camel/issues"
+  },
+  "repository": "git@github.com:mindaugas-jacionis/camel-de-camel.git",
+  "author": "Mindaugas Jačionis",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "unpkg": "lib/umd/index.js",
   "files": [
     "lib/*",
     "!lib/**/*.js.map"
   ],
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
-  "unpkg": "lib/umd/index.js",
   "scripts": {
     "qa": "run-p test lint",
     "test": "jest",
@@ -18,8 +38,6 @@
     "build:cjs/umd": "rollup -c",
     "build:esm": "babel src --out-dir lib/esm --ignore 'src/**/*.test.js' --source-maps"
   },
-  "author": "Mindaugas Jačionis",
-  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.8",
