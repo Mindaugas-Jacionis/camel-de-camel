@@ -25,10 +25,6 @@
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "unpkg": "lib/umd/index.js",
-  "files": [
-    "lib/*",
-    "!lib/**/*.js.map"
-  ],
   "scripts": {
     "qa": "run-p test lint",
     "test": "jest",
