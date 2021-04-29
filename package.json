@@ -1,6 +1,6 @@
 {
   "name": "camel-de-camel",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Recursive camelize or decamelize Objects and/or Arrays of Objects",
   "keywords": [
     "camelize",
